@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+		
+    <security:global-method-security secured-annotations="enabled"/>
+    
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/login/" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/**" access="ROLE_PO, ROLE_AD, ROLE_CO, ROLE_UW, ROLE_MA, ROLE_DM, ROLE_US, ROLE_AC, ROLE_CC" />
+        <security:form-login login-page="/login/" authentication-failure-url="/login/?error=true"/>
+    </security:http>
+    
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider user-service-ref="authenticationService" >
+			<security:password-encoder ref="passwordEncoder"> 
+				<security:salt-source ref="passwordSalt"/>
+			</security:password-encoder>
+		</security:authentication-provider>
+   	</security:authentication-manager>   	
+	
+	<beans:bean id="passwordEncoder" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <beans:property name="proxyInterfaces" value="org.springframework.security.authentication.encoding.PasswordEncoder"/>
+        <beans:property name="target" ref="defaultPasswordEncoder"/>
+    </beans:bean>
+
+    <beans:bean id="defaultPasswordEncoder" class="com.nokor.frmk.mvc.security.spring.encoding.SecMessageDigestPasswordEncoder">
+		<!-- SHA, MD5 -->
+		<beans:constructor-arg value="MD5"/>
+        <beans:property name="iterations" value="1000"/>
+    </beans:bean>
+
+    <beans:bean id="passwordSalt" class="com.nokor.frmk.mvc.security.spring.encoding.SecSaltSource">
+        <!--<beans:property name="fixedSalt" value="@$#nKr-DbmYS_qL#$@"/>-->
+        <beans:property name="userPropertyToUse" value="passwordSalt"/>
+        <beans:property name="prefixSalt" value="@$#nKr==["/>
+        <beans:property name="suffixSalt" value="]==DbmYS_qL#$@"/>
+    </beans:bean>
+	
+</beans:beans>            
