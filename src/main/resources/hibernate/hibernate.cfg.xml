@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+   <!-- a SessionFactory instance listed as /jndi/name -->	
+	 <!--  <session-factory>
+		<property name="configurationClass">org.hibernate.cfg.AnnotationConfiguration</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.use_sql_comments">true</property>
+		<property name="hibernate.format_sql">true</property>
+
+		<property name="hibernate.use_outer_join">true</property>
+		<property name="hbm2ddl.auto">update</property>
+   		<property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+   		<property name="hibernate.jdbc_use_scrollable_resultset">true</property>
+		<property name="hibernate.jdbc.fetch_size">50</property>
+		<property name="hibernate.jdbc.batch_size">20</property>
+		<property name="hibernate.jdbc.use_get_generated_keys">true</property>
+		<property name="hibernate.bytecode.use_reflection_optimizer">true</property>
+		<property name="hibernate.query.substitutions">true 1, false 0</property>
+		<property name="hibernate.connection.zeroDateTimeBehavior">convertToNull</property>	
+		<property name="hibernate.connection.charSet">UTF-8</property>
+
+		mapping files
+		<mapping class="com.nokor.frmk.mvc.security.model.SecUser"/>
+		<mapping class="com.nokor.frmk.mvc.security.model.SecApplication"/>
+		<mapping class="com.nokor.frmk.mvc.security.model.SecProfile"/>
+		<mapping class="com.nokor.frmk.mvc.security.model.SecPrivilege"/>
+		<mapping class="com.nokor.frmk.mvc.security.model.SecPage"/>
+		<mapping class="com.nokor.frmk.mvc.security.model.SecControl"/>
+		<mapping class="com.nokor.frmk.mvc.security.model.SecApplicationUserProfile"/>
+		<mapping class="com.nokor.frmk.mvc.security.model.SecPageProfilePrivilege"/>
+		<mapping class="com.nokor.frmk.mvc.security.model.SecControlProfilePrivilege"/>
+		<mapping class="com.nokor.frmk.mvc.model.config.SettingConfig"/>
+		
+		<mapping class="com.nokor.frmk.mvc.model.t9n.LocaleType"/>
+
+		<mapping class="com.nokor.efinance.core.model.system.Parameter"/>
+
+		<mapping class="com.nokor.efinance.core.model.security.SecUserBackup"/>
+		<mapping class="com.nokor.efinance.core.model.security.SecUserDetail"/>
+
+		<mapping class="com.nokor.efinance.core.model.system.Nationality"/>
+		<mapping class="com.nokor.efinance.core.model.system.DocumentGroup"/>
+		<mapping class="com.nokor.efinance.core.model.system.DocumentUwGroup"/>
+		<mapping class="com.nokor.efinance.core.model.system.DocumentScoring"/>
+		<mapping class="com.nokor.efinance.core.model.system.DocumentConfirmEvidence"/>
+		<mapping class="com.nokor.efinance.core.model.system.Document"/>
+		<mapping class="com.nokor.efinance.core.model.system.Relationship"/>
+		<mapping class="com.nokor.efinance.core.model.system.Color"/>
+		<mapping class="com.nokor.efinance.core.model.system.Engine"/>
+		<mapping class="com.nokor.efinance.core.model.system.EmploymentStatus"/>
+		<mapping class="com.nokor.efinance.core.model.system.EmploymentIndustry"/>
+		<mapping class="com.nokor.efinance.core.model.system.PropertyAddressType"/>
+		<mapping class="com.nokor.efinance.core.model.system.SupportDecision"/>
+		<mapping class="com.nokor.efinance.core.model.system.CoVOpinion"/>
+		<mapping class="com.nokor.efinance.core.model.system.ConfirmEvidence"/>
+		<mapping class="com.nokor.efinance.core.model.system.ContactVerification"/>
+		<mapping class="com.nokor.efinance.core.model.system.ProfileQuotationStatus"/>
+		<mapping class="com.nokor.efinance.core.model.system.ProfileDefaultQuotationStatus"/>
+		<mapping class="com.nokor.efinance.core.model.system.PlaceInstallment"/>
+		<mapping class="com.nokor.efinance.core.model.system.WayOfKnowing"/>
+		<mapping class="com.nokor.efinance.core.model.system.SeniorityLevel"/>
+		<mapping class="com.nokor.efinance.core.model.system.CertifyAddressOption"/>
+		<mapping class="com.nokor.efinance.core.model.system.CertifyIncomeOption"/>
+				
+		<mapping class="com.nokor.efinance.core.model.asset.AssetMake"/>
+		<mapping class="com.nokor.efinance.core.model.asset.AssetRange"/>
+		<mapping class="com.nokor.efinance.core.model.asset.AssetModel"/>
+		<mapping class="com.nokor.efinance.core.model.system.MatrixPrice"/>
+		
+		<mapping class="com.nokor.efinance.core.model.financialproduct.FinancialProduct"/>
+		<mapping class="com.nokor.efinance.core.model.financialproduct.FinancialProductPlan"/>
+		<mapping class="com.nokor.efinance.core.model.financialproduct.FinancialProductService"/>
+		<mapping class="com.nokor.efinance.core.model.service.Service"/>
+		
+		<mapping class="com.nokor.efinance.core.model.actor.Dealer"/>
+		<mapping class="com.nokor.efinance.core.model.actor.DealerAddress"/>
+		<mapping class="com.nokor.efinance.core.model.actor.Applicant"/>
+		<mapping class="com.nokor.efinance.core.model.actor.ApplicantAddress"/>
+		<mapping class="com.nokor.efinance.core.model.actor.Employment"/>
+		<mapping class="com.nokor.efinance.core.model.actor.ApplicantContactNumber"/>
+				
+		<mapping class="com.nokor.efinance.core.model.address.Address"/>
+		<mapping class="com.nokor.efinance.core.model.address.Province"/>
+		<mapping class="com.nokor.efinance.core.model.address.District"/>
+		<mapping class="com.nokor.efinance.core.model.address.Commune"/>
+		<mapping class="com.nokor.efinance.core.model.address.Village"/>
+		
+		<mapping class="com.nokor.efinance.core.model.asset.Asset"/>		
+						
+		<mapping class="com.nokor.efinance.core.model.quotation.Quotation"/>
+		<mapping class="com.nokor.efinance.core.model.quotation.QuotationApplicant"/>
+		<mapping class="com.nokor.efinance.core.model.quotation.QuotationService"/>
+		<mapping class="com.nokor.efinance.core.model.quotation.QuotationDocument"/>
+		<mapping class="com.nokor.efinance.core.model.quotation.QuotationExtModule"/>
+		<mapping class="com.nokor.efinance.core.model.quotation.QuotationContactEvidence"/>
+		<mapping class="com.nokor.efinance.core.model.quotation.QuotationContactVerification"/>
+		<mapping class="com.nokor.efinance.core.model.quotation.QuotationSupportDecision"/>
+		<mapping class="com.nokor.efinance.core.model.quotation.QuotationStatusHistory"/>
+		<mapping class="com.nokor.efinance.core.model.quotation.Comment"/>
+		
+		<mapping class="com.nokor.efinance.core.model.commun.History"/>
+
+		<mapping class="com.nokor.efinance.core.model.productline.ProductLine"/>
+		<mapping class="com.nokor.efinance.core.model.system.PaymentMethod"/>
+		<mapping class="com.nokor.efinance.core.model.system.PaymentCondition"/>
+
+		<mapping class="com.nokor.efinance.core.model.asset.BOAsset"/>
+		<mapping class="com.nokor.efinance.core.model.actor.BOApplicant"/>
+		<mapping class="com.nokor.efinance.core.model.actor.BOApplicantAddress"/>
+		<mapping class="com.nokor.efinance.core.model.actor.BOEmployment"/>
+		<mapping class="com.nokor.efinance.core.model.address.BOAddress"/>
+
+		<mapping class="com.nokor.efinance.core.model.creditline.CreditLine"/>
+		<mapping class="com.nokor.efinance.core.model.contract.Contract"/>
+		<mapping class="com.nokor.efinance.core.model.contract.ContractApplicant"/>
+		<mapping class="com.nokor.efinance.core.model.contract.ContractFinancialProduct"/>
+		<mapping class="com.nokor.efinance.core.model.contract.ContractSimulate"/>
+		<mapping class="com.nokor.efinance.core.model.cashflow.Cashflow"/>
+		<mapping class="com.nokor.efinance.core.model.cashflow.CashflowSimulate"/>
+		<mapping class="com.nokor.efinance.core.model.payment.Payment"/>
+		<mapping class="com.nokor.efinance.core.model.payment.PaymentHistory"/>
+
+		<mapping class="com.nokor.efinance.core.model.system.PenaltyRule"/>
+		<mapping class="com.nokor.efinance.core.model.system.ExchangeRate"/>
+
+		<mapping resource="hbm/securityservice.hbm.xml" />
+		
+		<mapping class="com.nokor.frmk.mvc.model.t9n.LocaleType"/>
+				
+		<listener class="org.hibernate.envers.event.AuditEventListener" type="post-insert"/>
+		<listener class="org.hibernate.envers.event.AuditEventListener" type="post-update"/>
+		<listener class="org.hibernate.envers.event.AuditEventListener" type="post-delete"/>
+		<listener class="org.hibernate.envers.event.AuditEventListener" type="pre-collection-update"/>
+		<listener class="org.hibernate.envers.event.AuditEventListener" type="pre-collection-remove"/>
+		<listener class="org.hibernate.envers.event.AuditEventListener" type="post-collection-recreate"/> -->
+		
+	</session-factory>
+</hibernate-configuration>
